@@ -1,7 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
@@ -31,17 +30,19 @@ class Settings(BaseSettings):
     max_upload_size_bytes: int = 10 * 1024 * 1024  # 10 Mo
     allowed_content_types: tuple[str, ...] = ("image/jpeg", "image/png")
 
-    # Origines autorisées pour le frontend. En production (Render), surchargé par la
-    # variable d'environnement CORS_ALLOW_ORIGINS, liste séparée par des virgules
+    # Origines autorisées pour le frontend, séparées par des virgules. En production
+    # (Render, Fly.io...), surchargé par la variable d'environnement CORS_ALLOW_ORIGINS
     # (ex. "https://100plante.vercel.app,https://100plante-git-main.vercel.app").
-    cors_allow_origins: tuple[str, ...] = ("http://localhost:3000", "http://localhost:5173")
+    #
+    # Champ volontairement typé `str` (pas `tuple[str, ...]`) : pydantic-settings tente
+    # de parser les types complexes venant de l'environnement comme du JSON avant même
+    # d'appeler les validateurs, donc une simple liste séparée par des virgules ferait
+    # planter le démarrage. Le découpage se fait nous-mêmes, dans la propriété ci-dessous.
+    cors_allow_origins: str = "http://localhost:3000,http://localhost:5173"
 
-    @field_validator("cors_allow_origins", mode="before")
-    @classmethod
-    def _split_cors_origins(cls, value: object) -> object:
-        if isinstance(value, str):
-            return tuple(origin.strip() for origin in value.split(",") if origin.strip())
-        return value
+    @property
+    def cors_allow_origins_list(self) -> list[str]:
+        return [origin.strip() for origin in self.cors_allow_origins.split(",") if origin.strip()]
 
 
 @lru_cache
