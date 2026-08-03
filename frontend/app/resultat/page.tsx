@@ -186,7 +186,17 @@ export default function ResultPage() {
             <div className={styles.diseaseInfo}>
               <p className={styles.diseaseInfoLabel}>À propos de cette maladie</p>
               <p className={styles.diseaseInfoCause}>{diseaseInfo.cause}</p>
-              <p className={styles.diseaseInfoDesc}>{diseaseInfo.description}</p>
+
+              <div className={styles.diseaseInfoRow}>
+                <span className={styles.diseaseInfoTag}>Symptômes</span>
+                <p className={styles.diseaseInfoDesc}>{diseaseInfo.symptoms}</p>
+              </div>
+
+              <div className={styles.diseaseInfoRow}>
+                <span className={styles.diseaseInfoTag}>Propagation</span>
+                <p className={styles.diseaseInfoDesc}>{diseaseInfo.spread}</p>
+              </div>
+
               <p className={styles.diseaseInfoDisclaimer}>
                 Information générale à titre indicatif — pas une recommandation de traitement.
               </p>

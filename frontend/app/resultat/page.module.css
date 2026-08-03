@@ -254,15 +254,31 @@
   font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
-  margin: 0 0 8px;
+  margin: 0 0 14px;
+}
+
+.diseaseInfoRow {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 4px 16px;
+  margin: 0 0 12px;
+}
+
+.diseaseInfoTag {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding-top: 1px;
 }
 
 .diseaseInfoDesc {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.6;
   color: var(--text-secondary);
-  max-width: 52ch;
-  margin: 0 0 10px;
+  max-width: 48ch;
+  margin: 0;
 }
 
 .diseaseInfoDisclaimer {
@@ -384,5 +400,10 @@
   .header {
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  .diseaseInfoRow {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 }
