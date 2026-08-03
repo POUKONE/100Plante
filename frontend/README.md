@@ -1,5 +1,7 @@
 # Frontend — 100Plante
 
+[![GitHub](https://img.shields.io/badge/GitHub-POUKONE%2F100Plante-181717?logo=github)](https://github.com/POUKONE/100Plante)
+
 Interface Next.js (App Router, TypeScript) pour la démonstration du système de
 détection de maladies foliaires (cahier des charges : `../docs/cahier-des-charges.md`,
 section 7 — direction artistique).
@@ -37,3 +39,21 @@ Composants partagés : `components/BrandMark.tsx` (logo), `components/NeuropathT
 Les 38 classes PlantVillage sont renvoyées en anglais par l'API (labels bruts du
 dataset). `lib/translations.ts` les traduit en français pour l'affichage — à
 maintenir en synchronisme avec `../backend/app/ml/labels.py` si les classes changent.
+
+## Diagnostic détaillé (page Résultat)
+
+Au-delà du score de confiance brut, la page `/resultat` explique le diagnostic
+avec des données issues de l'évaluation réelle du modèle (phase 4, voir
+`../backend/reports/evaluation_report.md`) :
+
+- `lib/diseaseInfo.ts` — cause et symptômes de chaque maladie (information
+  générale uniquement, **pas de recommandation de traitement** — hors périmètre
+  du cahier des charges, section 3.2).
+- `lib/modelReliability.ts` — précision/rappel/F1 réels par classe (mesurés sur
+  8 179 photos de test) traduits en langage clair ("fiabilité excellente/bonne/
+  moyenne"), et confusions connues entre classes (issues de la matrice de
+  confusion réelle) pour expliquer pourquoi une alternative apparaît dans le top-3.
+
+Ces deux fichiers sont à régénérer si le modèle est réentraîné et que les
+métriques ou confusions changent significativement (relancer
+`../backend/scripts/evaluate.py` et reporter les nouveaux chiffres).
