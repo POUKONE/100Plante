@@ -1,5 +1,7 @@
 # 100Plante
 
+[![GitHub](https://img.shields.io/badge/GitHub-POUKONE%2F100Plante-181717?logo=github)](https://github.com/POUKONE/100Plante)
+
 Système de détection de maladies sur feuilles de plantes par transfer learning
 (dataset PlantVillage, 38 classes, 14 espèces). Cahier des charges complet dans
 [`docs/cahier-des-charges.md`](docs/cahier-des-charges.md).
