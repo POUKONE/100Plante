@@ -1,6 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
@@ -11,7 +12,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
-    app_name: str = "Leaf Disease Detection API"
+    app_name: str = "100Plante API"
     api_prefix: str = "/api"
 
     # Emplacement du modèle entraîné (SavedModel Keras). Tant que ce chemin n'existe
@@ -30,8 +31,17 @@ class Settings(BaseSettings):
     max_upload_size_bytes: int = 10 * 1024 * 1024  # 10 Mo
     allowed_content_types: tuple[str, ...] = ("image/jpeg", "image/png")
 
-    # Origines autorisées pour le frontend (à ajuster une fois le frontend en place).
+    # Origines autorisées pour le frontend. En production (Render), surchargé par la
+    # variable d'environnement CORS_ALLOW_ORIGINS, liste séparée par des virgules
+    # (ex. "https://100plante.vercel.app,https://100plante-git-main.vercel.app").
     cors_allow_origins: tuple[str, ...] = ("http://localhost:3000", "http://localhost:5173")
+
+    @field_validator("cors_allow_origins", mode="before")
+    @classmethod
+    def _split_cors_origins(cls, value: object) -> object:
+        if isinstance(value, str):
+            return tuple(origin.strip() for origin in value.split(",") if origin.strip())
+        return value
 
 
 @lru_cache

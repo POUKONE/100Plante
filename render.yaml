@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: 100plante-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      # URL(s) du frontend autorisées en CORS, séparées par des virgules
+      # (ex. https://100plante.vercel.app). À renseigner après le premier
+      # déploiement du frontend sur Vercel — voir frontend/README.md.
+      - key: CORS_ALLOW_ORIGINS
+        sync: false

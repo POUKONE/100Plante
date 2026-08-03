@@ -24,6 +24,29 @@ cd frontend && npm run dev
 ```
 Puis ouvrir `http://localhost:3000`.
 
+## Déploiement
+
+**Backend sur [Render](https://render.com)** — Docker, config prête dans `render.yaml` :
+
+1. New → Blueprint sur Render, connecter le dépôt GitHub `POUKONE/100Plante`.
+2. Render détecte `render.yaml` et crée le service `100plante-backend` (plan Starter,
+   pour rester actif en continu et éviter de recharger le modèle à froid).
+3. Renseigner la variable `CORS_ALLOW_ORIGINS` (demandée à la création) — laisser
+   `http://localhost:3000` pour l'instant, à mettre à jour à l'étape 6.
+4. Noter l'URL générée (ex. `https://100plante-backend.onrender.com`).
+
+**Frontend sur [Vercel](https://vercel.com)** :
+
+5. Importer le même dépôt sur Vercel, définir **Root Directory = `frontend`**.
+   Ajouter la variable d'environnement `NEXT_PUBLIC_API_URL` = l'URL Render de
+   l'étape 4. Déployer.
+6. Retourner sur Render → Environment → mettre à jour `CORS_ALLOW_ORIGINS` avec
+   l'URL Vercel (ex. `https://100plante.vercel.app`), séparée par une virgule si
+   plusieurs domaines (production + preview). Redéployer le backend.
+
+Dockerfile et image testés en local avant mise en ligne (build + `/api/health` +
+`/api/predict` avec une vraie image, voir historique du dépôt).
+
 ## Où en est-on
 
 - [x] Squelette backend FastAPI, opérationnel en mode placeholder (voir

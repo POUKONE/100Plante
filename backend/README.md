@@ -17,6 +17,16 @@ python -m venv .venv         # déjà fait
 
 Puis ouvrir `http://localhost:8000/docs` (Swagger généré automatiquement par FastAPI).
 
+### Avec Docker
+
+```bash
+docker build -t 100plante-backend .
+docker run -p 8000:8000 100plante-backend
+```
+
+Déploiement en production : voir la section **Déploiement** du
+[README racine](../README.md#déploiement) (Render, config dans `../render.yaml`).
+
 ## Structure
 
 ```

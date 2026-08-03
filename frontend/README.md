@@ -16,6 +16,12 @@ npm run dev
 Ouvrir `http://localhost:3000`. Le backend (`../backend`) doit tourner sur le port 8000
 (configurable via `.env.local`, variable `NEXT_PUBLIC_API_URL`).
 
+## Déploiement (Vercel)
+
+Root Directory = `frontend` lors de l'import du dépôt, puis variable
+d'environnement `NEXT_PUBLIC_API_URL` pointant vers le backend Render. Détails
+étape par étape : [README racine](../README.md#déploiement).
+
 ## Pages
 
 - `/` — accueil (principes dominants : Edge, Motion TM)

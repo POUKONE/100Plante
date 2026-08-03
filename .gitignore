@@ -13,6 +13,10 @@ backend/data/*
 !backend/data/.gitkeep
 backend/models/*
 !backend/models/.gitkeep
+# Exception : le modèle final servi par l'API (21 Mo, sous la limite GitHub)
+# doit être versionné pour que le déploiement (Render) puisse le construire
+# dans l'image Docker sans étape de téléchargement séparée.
+!backend/models/leaf_disease_model.keras
 
 # Node / frontend (à venir)
 node_modules/
