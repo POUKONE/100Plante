@@ -24,8 +24,9 @@ docker build -t 100plante-backend .
 docker run -p 8000:8000 100plante-backend
 ```
 
-Déploiement en production : voir la section **Déploiement** du
-[README racine](../README.md#déploiement) (Render, config dans `../render.yaml`).
+Déployé en production sur Fly.io : https://100plante-backend.fly.dev — voir la
+section **Déploiement** du [README racine](../README.md#déploiement) (config dans
+`fly.toml`).
 
 ## Structure
 

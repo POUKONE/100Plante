@@ -18,8 +18,10 @@ Ouvrir `http://localhost:3000`. Le backend (`../backend`) doit tourner sur le po
 
 ## Déploiement (Vercel)
 
+Déployé en production : https://100-plante.vercel.app
+
 Root Directory = `frontend` lors de l'import du dépôt, puis variable
-d'environnement `NEXT_PUBLIC_API_URL` pointant vers le backend Render. Détails
+d'environnement `NEXT_PUBLIC_API_URL` pointant vers le backend Fly.io. Détails
 étape par étape : [README racine](../README.md#déploiement).
 
 ## Pages
