@@ -1,0 +1,3 @@
+# Dépendances supplémentaires pour l'évaluation (phase 4, scripts/evaluate.py).
+# matplotlib pour la matrice de confusion, pas nécessaire pour l'API ni l'entraînement.
+matplotlib==3.10.0

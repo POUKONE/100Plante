@@ -1,0 +1,59 @@
+:root {
+  --bg-void: #0f1310;
+  --bg-surface: #171d19;
+  --bg-surface-2: #202822;
+  --border-hairline: #2a332c;
+  --text-primary: #edf1ec;
+  --text-secondary: #9bab9c;
+  --text-tertiary: #66716a;
+  --accent-healthy: #7ca982;
+  --accent-healthy-strong: #a3d1a8;
+  --accent-disease: #c1793b;
+  --accent-disease-strong: #e0995a;
+  --radius: 2px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  color-scheme: dark;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

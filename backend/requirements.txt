@@ -1,0 +1,15 @@
+# API
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic-settings==2.7.1
+
+# ML
+tensorflow==2.18.0
+pillow==11.1.0
+numpy==1.26.4
+scikit-learn==1.6.1
+
+# Tests
+pytest==8.3.4
+httpx==0.28.1

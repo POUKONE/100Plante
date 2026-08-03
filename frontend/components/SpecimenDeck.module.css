@@ -1,0 +1,133 @@
+.deck {
+  position: relative;
+  height: 560px;
+  z-index: 2;
+}
+
+.chip {
+  position: absolute;
+  top: var(--chip-top);
+  left: var(--chip-left);
+  width: var(--chip-w);
+  height: var(--chip-w);
+  transform: rotate(var(--chip-rot));
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border-hairline);
+  opacity: 0;
+  animation: chip-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.chip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.scanLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  top: -10%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-healthy-strong) 45%,
+    var(--accent-healthy-strong) 55%,
+    transparent
+  );
+  box-shadow: 0 0 14px 2px rgba(163, 209, 168, 0.5);
+  opacity: 0;
+}
+
+.scanning {
+  animation: scan 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.tag {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(15, 19, 16, 0.86);
+  color: var(--text-primary);
+  padding: 4px 7px;
+  border-radius: 2px;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tagHealthy {
+  color: var(--accent-healthy-strong);
+  transform: translateY(0);
+}
+
+.tagDisease {
+  color: var(--accent-disease-strong);
+  transform: translateY(0);
+}
+
+@keyframes chip-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: -4%;
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: 104%;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .deck {
+    height: 320px;
+  }
+}
+
+/* En dessous de 640px, le deck en positionnement libre (pensé pour un grand
+   canevas desktop) devient illisible : on bascule vers une rangée simple,
+   défilante horizontalement, sans rotation ni profondeur. */
+@media (max-width: 640px) {
+  .deck {
+    height: auto;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .chip {
+    position: relative;
+    top: auto;
+    left: auto;
+    flex: none;
+    width: 104px;
+    height: 104px;
+    transform: none;
+  }
+
+  .tag {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}

@@ -1,0 +1,5 @@
+# Dépendances supplémentaires pour la baseline scikit-learn (phase 2).
+# scikit-image fournit HOG (Histogram of Oriented Gradients) pour extraire des
+# features "à la main", volontairement sans deep learning, pour que la comparaison
+# avec le modèle de transfer learning (phase 3) ait un sens (cahier des charges 6.1).
+scikit-image==0.25.0

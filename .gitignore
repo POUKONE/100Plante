@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Environnement
+.env
+.env.local
+
+# Données et modèles (volumineux, non versionnés)
+backend/data/*
+!backend/data/.gitkeep
+backend/models/*
+!backend/models/.gitkeep
+
+# Node / frontend (à venir)
+node_modules/
+.next/
+dist/
+
+# OS
+.DS_Store

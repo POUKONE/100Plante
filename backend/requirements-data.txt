@@ -1,0 +1,9 @@
+# Dépendances supplémentaires pour le pipeline de données (scripts/download_data.py).
+# Séparées de requirements.txt car uniquement nécessaires pour préparer le dataset,
+# pas pour faire tourner l'API.
+#
+# tensorflow-metadata est épinglé : la dernière version (1.21.0) embarque des fichiers
+# protobuf générés avec un gencode 6.x, incompatible avec la contrainte
+# `protobuf<6.0.0dev` imposée par tensorflow==2.18.0 (voir README backend).
+tensorflow-datasets==4.9.10
+tensorflow-metadata==1.16.1
